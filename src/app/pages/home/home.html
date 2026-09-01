@@ -1,0 +1,54 @@
+<h2>Ejercicio 2: if</h2>
+<button (click)="toggleWelcome()">Toggle Welcome</button>
+@if (showWelcome()) {
+  <p>Bienvenido a la aplicación!</p>
+} @else {
+  <p>Mensaje de bienvenida oculto.</p>
+}
+
+<h2>Ejercicio 3: for</h2>
+<ul>
+  @for (book of books(); track book.id) {
+    <li>{{ book.title }} - {{ book.author }}</li>
+  } @empty {
+    <li>No hay libros disponibles.</li>
+  }
+</ul>
+
+<h2>Ejercicio 4: switch</h2>
+<button (click)="changeGenre('novela')">Novela</button>
+<button (click)="changeGenre('poesía')">Poesía</button>
+<button (click)="changeGenre('ensayo')">Ensayo</button>
+
+@switch (selectedGenre()) {
+  @case ('novela') {<p>Has seleccionado la categoría de novela.</p>}
+  @case ('poesía') {<p>Has seleccionado la categoría de poesía.</p>}
+  @case ('ensayo') {<p>Has seleccionado la categoría de ensayo.</p>}
+  @default {
+    <p>Por favor, selecciona una categoría.</p>
+  }
+}
+
+<h2>Resto de directivas</h2>
+<p [ngClass]="{ 'texto-desactivado': isDisabled() }">
+  Este texto cambia de estilo según isDisabled
+</p>
+<button (click)="isDisabled.set(!isDisabled())">Alternar estado</button>
+
+<p [ngStyle]="{ color: showWelcome() ? 'green' : 'red' }">
+  Color dinámico según showWelcome
+</p>
+
+<input [(ngModel)]="searchText" placeholder="Buscar libro..." />
+<p>Estás buscando: {{ searchText() }}</p>
+
+<h2>Directivas personalizadas</h2>
+<input appAutofocus placeholder="Autofocus" />
+
+<div *appIfRole="'admin'; role: 'admin'">
+  <p>Contenido solo para admin (aquí sí se ve, prueba a cambiar el rol)</p>
+</div>
+
+<button appClickCounter>Cuenta mis clicks (mira la consola)</button>
+
+<p appEnlargeOnHover>Pasa el ratón por aquí para agrandarme</p>
