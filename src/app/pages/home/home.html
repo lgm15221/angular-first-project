@@ -1,17 +1,17 @@
 <h2>Ejercicio 2: if</h2>
 <button (click)="toggleWelcome()">Toggle Welcome</button>
 @if (showWelcome()) {
-  <p>Bienvenido a la aplicación!</p>
+<p>Bienvenido a la aplicación!</p>
 } @else {
-  <p>Mensaje de bienvenida oculto.</p>
+<p>Mensaje de bienvenida oculto.</p>
 }
 
 <h2>Ejercicio 3: for</h2>
 <ul>
   @for (book of books(); track book.id) {
-    <li>{{ book.title }} - {{ book.author }}</li>
+  <li>{{ book.title }} - {{ book.author }}</li>
   } @empty {
-    <li>No hay libros disponibles.</li>
+  <li>No hay libros disponibles.</li>
   }
 </ul>
 
@@ -21,12 +21,12 @@
 <button (click)="changeGenre('ensayo')">Ensayo</button>
 
 @switch (selectedGenre()) {
-  @case ('novela') {<p>Has seleccionado la categoría de novela.</p>}
-  @case ('poesía') {<p>Has seleccionado la categoría de poesía.</p>}
-  @case ('ensayo') {<p>Has seleccionado la categoría de ensayo.</p>}
-  @default {
-    <p>Por favor, selecciona una categoría.</p>
-  }
+@case ('novela') {<p>Has seleccionado la categoría de novela.</p>}
+@case ('poesía') {<p>Has seleccionado la categoría de poesía.</p>}
+@case ('ensayo') {<p>Has seleccionado la categoría de ensayo.</p>}
+@default {
+<p>Por favor, selecciona una categoría.</p>
+}
 }
 
 <h2>Resto de directivas</h2>
@@ -52,3 +52,17 @@
 <button appClickCounter>Cuenta mis clicks (mira la consola)</button>
 
 <p appEnlargeOnHover>Pasa el ratón por aquí para agrandarme</p>
+
+<h2>Libros desde json-server</h2>
+<ul>
+  @for (book of apiBooks(); track book.id) {
+  <li>{{ book.title }} — {{ book.author }}</li>
+  }
+</ul>
+
+<h2>Proveedores desde json-server</h2>
+<ul>
+  @for (provider of apiProviders(); track provider.id) {
+  <li>{{ provider.name }} — {{ provider.email }}</li>
+  }
+</ul>
